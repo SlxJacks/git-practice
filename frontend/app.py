@@ -46,5 +46,9 @@ def simple_form():
 def success():
     return render_template('success.html')
 
+@app.route('/todo', methods=['GET'])
+def get_users():
+    return render_template('toDo.html')
+    
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

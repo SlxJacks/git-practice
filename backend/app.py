@@ -16,6 +16,7 @@ userCollection = db.users
 @app.route('/api', methods=['GET'])
 def get_users():
     users = userCollection.find()
+    
     return dumps(users), 200, {'Content-Type': 'application/json'}
 
 @app.route('/simple_form_submit', methods=['POST'])

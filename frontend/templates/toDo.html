@@ -111,6 +111,9 @@
     <h1>Submit TO DO Data</h1>
 
     <form method="post" action="{{ url_for('submittodoitem') }}">
+      <label for="itemid">Item ID:</label>
+      <input type="text" name="itemid" id="itemid" />
+
       <label for="name">Item Name:</label>
       <input type="text" name="name" id="name" />
 

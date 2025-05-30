@@ -12,6 +12,7 @@ app = Flask(__name__)
 client = MongoClient(mongo_uri)
 db = client.sample_mflix
 userCollection = db.users
+todo = db.todoList
 
 @app.route('/api', methods=['GET'])
 def get_users():
@@ -36,6 +37,21 @@ def add_user():
             'password': password
         })
         return jsonify({'message': 'User created'}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/submittodoitem', methods=['POST'])
+def todoItem():
+    data = request.json
+    name = data.get('name')
+    desc = data.get('desc')
+
+    try:
+        todo.insert_one({
+            'name': name,
+            'desc': desc
+        })
+        return jsonify({'message': 'Todo Item created'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
